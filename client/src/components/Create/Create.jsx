@@ -70,19 +70,23 @@ export default function Create() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(postDogs(input));
-        alert("New Dog created succesfully!");
-        setInput({
-            name: "",
-            min_weight: "",
-            max_weight: "",
-            min_height: "",
-            max_height: "",
-            life_span: "",
-            image: "",
-            temperament: []
-        });
-        history.push('/home');
+        if (Object.keys(errors).length > 0) {
+            alert('Faltan parametros')
+        }else{
+            dispatch(postDogs(input));
+            alert("New Dog created succesfully!");
+            setInput({
+                name: "",
+                min_weight: "",
+                max_weight: "",
+                min_height: "",
+                max_height: "",
+                life_span: "",
+                image: "",
+                temperament: []
+            });
+            history.push('/home');
+        }
     };
 
     function handleDelete(e) {
