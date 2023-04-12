@@ -3,7 +3,7 @@ const router = express.Router();
 const { Dog, Temperament } = require('../db')
 
 router.post("/", async (req, res) => {
-    const { name, min_weight, max_weight, min_height, max_height, life_span, image, temperament, createDB } = req.body;
+    const { name, min_weight, max_weight, min_height, max_height, life_span, image, colorC, temperament, createDB } = req.body;
 
     const exactHeight = [];
     const minHeight = min_height;
@@ -21,6 +21,7 @@ router.post("/", async (req, res) => {
             return res.send("Faltan parametros");
         }
 
+
         const findDog = await Dog.findAll({
             where: { name: name },
         });
@@ -35,6 +36,7 @@ router.post("/", async (req, res) => {
             weight: exactWeight,
             height: exactHeight,
             image,
+            colorC: colorC ? colorC : "negro",
             createDB
         });
 
